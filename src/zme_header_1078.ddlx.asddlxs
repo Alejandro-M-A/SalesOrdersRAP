@@ -1,0 +1,37 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI: {
+headerInfo: {
+    typeName: 'Header',
+    typeNamePlural: 'Headers',
+    title: {
+        type: #STANDARD,
+        value: 'Id'
+    }
+}
+ }
+annotate view ZC_header_1078 with
+{
+  @UI.facet: [{ id: 'Header', 
+                purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE,
+                label: 'Header',
+                position: 10 },
+                { id : 'Items',
+                purpose: #STANDARD,
+                type:  #LINEITEM_REFERENCE,
+                label: 'Items',
+                position: 20,
+                targetElement: '_Items'}]
+  @UI: { 
+     lineItem: [{
+              position: 10,
+              exclude: true,
+              hidden: true,
+              importance: #HIGH}],
+              identification: [{ position: 10,
+                                 label: 'Header ID [1,...,9999999]' }]}
+  @Search.defaultSearchElement: true
+  Id;
+
+}
