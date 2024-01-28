@@ -1,0 +1,26 @@
+managed implementation in class zbp_i_header_1078 unique;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for zi_header_1078 //alias <alias_name>
+persistent table zheader_1078
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _Items { create; }
+}
+
+define behavior for zi_items_1078 //alias <alias_name>
+persistent table zitems_1078
+lock dependent by _Header
+authorization dependent by _Header
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) header_id;
+  association _Header;
+}

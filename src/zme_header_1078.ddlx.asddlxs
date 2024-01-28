@@ -12,26 +12,91 @@ headerInfo: {
  }
 annotate view ZC_header_1078 with
 {
-  @UI.facet: [{ id: 'Header', 
-                purpose: #STANDARD,
-                type: #IDENTIFICATION_REFERENCE,
-                label: 'Header',
-                position: 10 },
-                { id : 'Items',
-                purpose: #STANDARD,
-                type:  #LINEITEM_REFERENCE,
-                label: 'Items',
-                position: 20,
-                targetElement: '_Items'}]
-  @UI: { 
+  @UI.facet: [{ id: 'Header',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Header',
+                 position: 10 },
+                 { id : 'Items',
+                 purpose: #STANDARD,
+                 type:  #LINEITEM_REFERENCE,
+                 label: 'Items',
+                 position: 20,
+                 targetElement: '_Items'}]
+  @UI: {
      lineItem: [{
               position: 10,
               exclude: true,
               hidden: true,
               importance: #HIGH}],
               identification: [{ position: 10,
-                                 label: 'Header ID [1,...,9999999]' }]}
+                                 label: 'Header ID' }]}
   @Search.defaultSearchElement: true
   Id;
+
+  @UI: {
+   lineItem: [{
+            position: 20,
+            importance: #HIGH}],
+            identification: [{ position: 20,
+                               label: 'Email' }]}
+  Email;
+
+  @UI: {
+   lineItem: [{
+            position: 30,
+            importance: #HIGH}],
+            identification: [{ position: 30,
+                               label: 'Name' }]}
+  FirstName;
+
+  @UI: {
+   lineItem: [{
+            position: 40,
+            importance: #MEDIUM}],
+            identification: [{ position: 40,
+                               label: 'Last Name' }]}
+  LastName;
+
+  @UI: {
+    lineItem: [{
+             position: 50,
+             importance: #MEDIUM}],
+             identification: [{ position: 50,
+                                label: 'Country' }]}
+  Country;
+
+  @UI: {
+    lineItem: [{
+             position: 60,
+             importance: #LOW}],
+             identification: [{ position: 60,
+                                label: 'Created On' }]}
+  CreatedOn;
+
+  @UI: {
+    lineItem: [{
+             position: 70,
+             importance: #MEDIUM}],
+             identification: [{ position: 70,
+                                label: 'Delivery Date' }]}
+  DeliveryDate;
+
+  @UI: {
+   lineItem: [{
+            position: 80,
+            importance: #MEDIUM}],
+            identification: [{ position: 80,
+                               label: 'Status' }]}
+  orderstatus;
+
+  @UI: {
+   lineItem: [{
+            position: 90,
+            importance: #LOW}],
+            identification: [{ position: 90,
+                               label: 'Image URL' }]}
+  imageurl;
+
 
 }
