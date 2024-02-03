@@ -1,102 +1,69 @@
 @Metadata.layer: #CORE
-@Search.searchable: true
-@UI: {
-headerInfo: {
-    typeName: 'Header',
-    typeNamePlural: 'Headers',
-    title: {
-        type: #STANDARD,
-        value: 'Id'
-    }
-}
- }
+@UI: { headerInfo: { imageUrl: 'ImageUrl',
+                     typeName: 'Sales Order',
+                     typeNamePlural: 'Sales Orders',
+                     title: { type: #STANDARD, value: 'Id' } },
+       presentationVariant: [{ sortOrder: [{ by: 'Id', direction: #DESC }], visualizations: [{type: #AS_LINEITEM}]  }] }
 annotate view ZC_header_1078 with
 {
-  @UI.facet: [{ id: 'Header',
-                 purpose: #STANDARD,
-                 type: #IDENTIFICATION_REFERENCE,
-                 label: 'Header',
-                 position: 10 },
-                 { id : 'Items',
-                 purpose: #STANDARD,
-                 type:  #LINEITEM_REFERENCE,
-                 label: 'Items',
-                 position: 20,
-                 targetElement: '_Items'}]
-  @UI: {
-     lineItem: [{
-              position: 10,
-              exclude: true,
-              hidden: true,
-              importance: #HIGH}],
-              identification: [{ position: 10,
-                                 label: 'Header ID' }]}
-  @Search.defaultSearchElement: true
+  @UI.facet: [{ id:            'Header',
+                 purpose:       #STANDARD,
+                 type:          #IDENTIFICATION_REFERENCE,
+                 label:         'Sales Order',
+                 position:      10 },
+               { id:            'Item',
+                 purpose:       #STANDARD,
+                 type:          #LINEITEM_REFERENCE,
+                 label:         'Items',
+                 position:      20,
+                 targetElement: '_Item'}]
+
+  @EndUserText.label: 'ID'
+  @UI: { lineItem:       [ { position: 10, importance: #HIGH, cssDefault: { width: '7rem' } } ],
+         identification: [ { position: 10, label: 'Sales Order Id' } ] }
   Id;
 
-  @UI: {
-   lineItem: [{
-            position: 20,
-            importance: #HIGH}],
-            identification: [{ position: 20,
-                               label: 'Email' }]}
+  @EndUserText.label: 'Email'
+  @UI: { lineItem:       [ { position: 20, importance: #HIGH, cssDefault: { width: '11rem' } } ] ,
+         identification: [ { position: 20 } ],
+         selectionField: [ { position: 20 } ] }
   Email;
 
-  @UI: {
-   lineItem: [{
-            position: 30,
-            importance: #HIGH}],
-            identification: [{ position: 30,
-                               label: 'Name' }]}
+  @EndUserText.label: 'Name'
+  @UI: { lineItem:       [ { position: 30, importance: #HIGH, cssDefault: { width: '11rem' } } ] ,
+         identification: [ { position: 30 } ],
+         selectionField: [ { position: 30 } ] }
   FirstName;
 
-  @UI: {
-   lineItem: [{
-            position: 40,
-            importance: #MEDIUM}],
-            identification: [{ position: 40,
-                               label: 'Last Name' }]}
+  @EndUserText.label: 'Surname'
+  @UI: { lineItem:       [ { position: 40, importance: #HIGH, cssDefault: { width: '11rem' } } ] ,
+         identification: [ { position: 40 } ],
+         selectionField: [ { position: 40 } ] }
   LastName;
 
-  @UI: {
-    lineItem: [{
-             position: 50,
-             importance: #MEDIUM}],
-             identification: [{ position: 50,
-                                label: 'Country' }]}
+  @EndUserText.label: 'Country'
+  @UI: { lineItem:       [ { position: 50, importance: #MEDIUM, cssDefault: { width: '5rem' } } ] ,
+         identification: [ { position: 50 } ] }
   Country;
 
-  @UI: {
-    lineItem: [{
-             position: 60,
-             importance: #LOW}],
-             identification: [{ position: 60,
-                                label: 'Created On' }]}
+  @EndUserText.label: 'Created on'
+  @UI: { lineItem:       [ { position: 60, importance: #MEDIUM } ] ,
+         identification: [ { position: 60 } ] }
   CreatedOn;
 
-  @UI: {
-    lineItem: [{
-             position: 70,
-             importance: #MEDIUM}],
-             identification: [{ position: 70,
-                                label: 'Delivery Date' }]}
+  @EndUserText.label: 'Delivery date'
+  @UI: { lineItem:       [ { position: 70, importance: #MEDIUM } ] ,
+         identification: [ { position: 70 } ] }
   DeliveryDate;
 
-  @UI: {
-   lineItem: [{
-            position: 80,
-            importance: #MEDIUM}],
-            identification: [{ position: 80,
-                               label: 'Status' }]}
-  orderstatus;
+  @EndUserText.label: 'Order status'
+  @UI: { identification: [ { position: 80 } ], selectionField: [ { position: 50 } ] }
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZI_STATUSVH_1405',
+                                       element: 'Status'  } }]
+  OrderStatus;
 
-  @UI: {
-   lineItem: [{
-            position: 90,
-            importance: #LOW}],
-            identification: [{ position: 90,
-                               label: 'Image URL' }]}
-  imageurl;
-
-
-}
+  @EndUserText.label: 'Image URL'
+  @UI: { lineItem:       [ { position: 90, importance: #LOW } ],
+         identification: [ { position: 90 } ] }
+  ImageUrl;
+  }

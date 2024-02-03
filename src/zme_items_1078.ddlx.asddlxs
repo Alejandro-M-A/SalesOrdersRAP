@@ -1,127 +1,67 @@
 @Metadata.layer: #CORE
-@UI: {
-headerInfo: {
-    typeName: 'Items',
-    typeNamePlural: 'Items',
-    title: {
-        type: #STANDARD,
-        value: 'Id'
-    }
-}
- }
-annotate view ZC_items_1078 with
+
+@UI: { headerInfo: { typeName: 'Item',
+                     typeNamePlural: 'Items',
+                     title: { type: #STANDARD, value: 'Id' } } }
+
+annotate entity ZC_items_1078 with
 {
-
-  @UI.facet: [ { id: 'Items',
-                 purpose: #STANDARD,
-                 type: #IDENTIFICATION_REFERENCE,
-                 label: 'Items',
-                 position: 10 } ]
-                 
-  @UI.hidden: true
-  HeaderId;
-
- @EndUserText.label: 'Item ID'
-  id;
-
-  @UI: {
-   lineItem: [{
-            position: 20,
-            exclude: true,
-            hidden: false,
-            importance: #HIGH}],
-            identification: [{ position: 20,
-                               label: 'Name' }]}
-  name;
-
-  @UI: {
-   lineItem: [{
-            position: 30,
-            exclude: true,
-            hidden: false,
-            importance: #MEDIUM}],
-            identification: [{ position: 30,
-                               label: 'Desccription' }]}
-  description;
-
-  @UI: {
-   lineItem: [{
-            position: 30,
-            exclude: true,
-            hidden: false,
-            importance: #HIGH}],
-            identification: [{ position: 30,
-                               label: 'Release Date' }]}
+  @UI.facet: [ { id:            'Item',
+               purpose:       #STANDARD,
+               type:          #IDENTIFICATION_REFERENCE,
+               label:         'Item',
+               position:      10 } ]
+  
+  @EndUserText.label: 'Item ID'
+  @UI: { lineItem:       [ { position: 05, importance: #HIGH } ],
+         identification: [ { position: 05 } ] }
+  Id;
+  
+  @EndUserText.label: 'Name'
+  @UI: { lineItem:       [ { position: 10, importance: #HIGH } ],
+         identification: [ { position: 10 } ] }
+  Name;
+  
+  @EndUserText.label: 'Description'
+  @UI: { lineItem:       [ { position: 20, importance: #HIGH } ],
+         identification: [ { position: 20 } ] }
+  Description;
+  
+  @EndUserText.label: 'Release date'
+  @UI: { lineItem:       [ { position: 30, importance: #HIGH } ],
+         identification: [ { position: 30 } ] }
   ReleaseDate;
-
-  @UI: {
-   lineItem: [{
-            position: 40,
-            exclude: true,
-            hidden: false,
-            importance: #HIGH}],
-            identification: [{ position: 40,
-                               label: 'Discontinued Date' }]}
+  
+  @EndUserText.label: 'Discontinued date'
+  @UI: { lineItem:       [ { position: 40, importance: #HIGH } ],
+         identification: [ { position: 40 } ] }
   DiscontinuedDate;
-
-  @UI: {
-   lineItem: [{
-            position: 50,
-            exclude: true,
-            hidden: false,
-            importance: #HIGH}],
-            identification: [{ position: 50,
-                               label: 'Price' }]}
-  price;
-
-  @UI: {
-   lineItem: [{
-            position: 60,
-            exclude: true,
-            hidden: false,
-            importance: #LOW}],
-            identification: [{ position: 60,
-                               label: 'Height' }]}
-  height;
-
-  @UI: {
-   lineItem: [{
-            position: 70,
-            exclude: true,
-            hidden: false,
-            importance: #LOW}],
-            identification: [{ position: 70,
-                               label: 'Width' }]}
-  width;
-
-  @UI: {
-   lineItem: [{
-            position: 80,
-            exclude: true,
-            hidden: false,
-            importance: #LOW}],
-            identification: [{ position: 80,
-                               label: 'Depth' }]}
-  depth;
-
-  @UI: {
-   lineItem: [{
-            position: 90,
-            exclude: true,
-            hidden: false,
-            importance: #HIGH}],
-            identification: [{ position: 90,
-                               label: 'Quantity' }]}
-  quantity;
-
-  @UI: {
-   lineItem: [{
-            position: 100,
-            exclude: true,
-            hidden: false,
-            importance: #HIGH}],
-            identification: [{ position: 100,
-                               label: 'Unit' }]}
-  UnitsOfMesaure;
-
+  
+  @EndUserText.label: 'Price'
+  @UI: { lineItem:       [ { position: 50, importance: #HIGH } ],
+         identification: [ { position: 50 } ] }
+  Price;
+  
+  @EndUserText.label: 'Height'
+  @UI: { lineItem:       [ { position: 60, importance: #HIGH } ],
+         identification: [ { position: 60 } ] }
+  Height;
+  
+  @EndUserText.label: 'Width'
+  @UI: { lineItem:       [ { position: 70, importance: #HIGH } ],
+         identification: [ { position: 70 } ] }
+  Width;
+  
+  @EndUserText.label: 'Depth'
+  @UI: { lineItem:       [ { position: 80, importance: #HIGH } ],
+         identification: [ { position: 80 } ] }
+  Depth;
+  
+  @EndUserText.label: 'Quantity'
+  @UI: { lineItem:       [ { position: 90, importance: #HIGH } ],
+         identification: [ { position: 90 } ] }
+  Quantity;
+  
+  @EndUserText.label: 'UoM'
+  UnitOfMesaure;
 }

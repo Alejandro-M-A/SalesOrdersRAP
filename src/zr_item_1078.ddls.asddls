@@ -1,7 +1,8 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'Interface - Items'
-define view entity zi_items_1078
-  as projection on zr_item_1078
+@EndUserText.label: 'Item'
+define view entity zr_item_1078
+  as select from zitems_1078
+  association to parent zr_header_1078 as _Header on $projection.header_id = _Header.id
 {
   key id,
       header_id,
@@ -16,6 +17,6 @@ define view entity zi_items_1078
       quantity,
       unit_of_mesaure,
       locallastchangedat,
-      /* Associations */
-      _Header : redirected to parent zi_header_1078
+      
+      _Header
 }

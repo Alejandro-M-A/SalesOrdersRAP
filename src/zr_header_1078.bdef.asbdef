@@ -1,0 +1,52 @@
+managed;
+strict ( 2 );
+with draft;
+
+define behavior for zr_header_1078 alias Header
+implementation in class zcl_header_1078 unique
+persistent table zheader_1078
+draft table zheader_d_1078
+lock master
+total etag LastChangedAt
+authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create ( precheck );
+  update ( precheck );
+  delete;
+  association _Item { create ( features : instance, authorization : update ); with draft; }
+
+  field ( mandatory : create ) id;
+field ( readonly : update ) image_url, created_on;
+  field ( mandatory ) email;
+
+  // Validations
+  validation validateEmail on save { create; update; field Email; }
+
+  // Draft actions
+  draft action Resume with additional implementation;
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+
+  draft determine action Prepare
+  {
+    validation validateEmail;
+  }
+}
+
+define behavior for zr_item_1078 alias Item
+implementation in class zcl_item_1078 unique
+persistent table zitems_1078
+draft table zitems_d_1078
+lock dependent by _Header
+authorization dependent by _Header
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) header_id;
+  field ( readonly : update ) id;
+
+  association _Header { with draft; }
+}

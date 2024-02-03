@@ -15,10 +15,10 @@
        <TITLE>Historic versions</TITLE>
       </item>
       <item>
-       <HREF>/sap/bc/adt/businessservices/odatav2/ZSB_HEADER_1078</HREF>
-       <REL>http://www.sap.com/categories/odatav2</REL>
-       <TYPE>application/vnd.sap.adt.businessservices.odatav2.v2+xml</TYPE>
-       <TITLE>ODATAV2</TITLE>
+       <HREF>/sap/bc/adt/businessservices/odatav4/ZSB_HEADER_1078</HREF>
+       <REL>http://www.sap.com/categories/odatav4</REL>
+       <TYPE>application/vnd.sap.adt.businessservices.odatav4.v1+xml</TYPE>
+       <TITLE>ODATAV4</TITLE>
       </item>
       <item>
        <HREF>/sap/bc/adt/businessservices/testclass</HREF>
@@ -47,10 +47,10 @@
       <NAME>ZSB_HEADER_1078</NAME>
      </BIND_TYPE_IMPL>
      <BIND_TYPE>ODATA</BIND_TYPE>
-     <BIND_TYPE_VERSION>V2</BIND_TYPE_VERSION>
+     <BIND_TYPE_VERSION>V4</BIND_TYPE_VERSION>
      <SERVICES>
       <item>
-       <SERVICE_NAME>ZSB_HEADER_1078</SERVICE_NAME>
+       <SERVICE_NAME>ZSD_HEADER_1078</SERVICE_NAME>
        <SERVICE_CONTENT>
         <item>
          <SERVICE_VERSION>0001</SERVICE_VERSION>

@@ -1,5 +1,5 @@
 @EndUserText.label: 'Service Definition - Header'
 define service ZSD_Header_1078 {
-  expose ZC_header_1078 as Header;
-  expose ZC_items_1078  as Items;
+  expose ZC_header_1078;
+  expose ZC_items_1078;
 }
