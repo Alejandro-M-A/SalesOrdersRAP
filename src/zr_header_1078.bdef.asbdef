@@ -16,12 +16,12 @@ etag master LocalLastChangedAt
   delete;
   association _Item { create ( features : instance, authorization : update ); with draft; }
 
-  field ( mandatory : create ) id;
-field ( readonly : update ) image_url, created_on;
-  field ( mandatory ) email;
+  field ( mandatory : create ) id, email;
+  field ( readonly : update ) id, email, image_url;
 
   // Validations
-  validation validateEmail on save { create; update; field Email; }
+  validation validateEmail on save { create; update; field email; }
+  validation validateCreatedOn on save { create; update; field created_on, delivery_date; }
 
   // Draft actions
   draft action Resume with additional implementation;
@@ -32,6 +32,7 @@ field ( readonly : update ) image_url, created_on;
   draft determine action Prepare
   {
     validation validateEmail;
+    validation validateCreatedOn;
   }
 }
 

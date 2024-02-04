@@ -25,8 +25,9 @@ CLASS zcl_load_initial_data_1078 IMPLEMENTATION.
 *local_last_changed_at : abp_locinst_lastchange_tstmpl;
 *last_changed_at       : abp_lastchange_tstmpl;
 
-    DATA: lt_header    TYPE TABLE OF zHeader_1078,
-          lt_Items     TYPE TABLE OF zitems_1078.
+    DATA: lt_header TYPE TABLE OF zHeader_1078,
+          lt_Items  TYPE TABLE OF zitems_1078,
+          lt_status TYPE TABLE OF zstatus_1078.
 
 ******** TABLA1 ********
     "fill internal table
@@ -57,6 +58,17 @@ CLASS zcl_load_initial_data_1078 IMPLEMENTATION.
     IF sy-subrc EQ 0.
       out->write( |Items: { sy-dbcnt } registros insertados| ).
     ENDIF.
+
+******** TABLA3 ********
+    lt_status = VALUE #(
+        ( id = '001' description = 'New' )
+        ( id = '002' description = 'In Process' )
+        ( id = '003' description = 'Finished' )
+     ).
+
+    "Delete possible entries; insert new entries
+    DELETE FROM zstatus_1078.
+    INSERT zstatus_1078 FROM TABLE @lt_status.
 
     "Check result in console
     out->write( 'DONE!' ).

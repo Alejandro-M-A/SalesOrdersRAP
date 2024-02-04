@@ -19,30 +19,30 @@ annotate view ZC_header_1078 with
                  targetElement: '_Item'}]
 
   @EndUserText.label: 'ID'
-  @UI: { lineItem:       [ { position: 10, importance: #HIGH, cssDefault: { width: '7rem' } } ],
+  @UI: { lineItem:       [ { position: 10, importance: #HIGH } ],
          identification: [ { position: 10, label: 'Sales Order Id' } ] }
   Id;
 
   @EndUserText.label: 'Email'
-  @UI: { lineItem:       [ { position: 20, importance: #HIGH, cssDefault: { width: '11rem' } } ] ,
+  @UI: { lineItem:       [ { position: 20, importance: #HIGH } ] ,
          identification: [ { position: 20 } ],
          selectionField: [ { position: 20 } ] }
   Email;
 
   @EndUserText.label: 'Name'
-  @UI: { lineItem:       [ { position: 30, importance: #HIGH, cssDefault: { width: '11rem' } } ] ,
+  @UI: { lineItem:       [ { position: 30, importance: #HIGH } ] ,
          identification: [ { position: 30 } ],
          selectionField: [ { position: 30 } ] }
   FirstName;
 
-  @EndUserText.label: 'Surname'
-  @UI: { lineItem:       [ { position: 40, importance: #HIGH, cssDefault: { width: '11rem' } } ] ,
+  @EndUserText.label: 'Last Name'
+  @UI: { lineItem:       [ { position: 40, importance: #HIGH } ] ,
          identification: [ { position: 40 } ],
          selectionField: [ { position: 40 } ] }
   LastName;
 
   @EndUserText.label: 'Country'
-  @UI: { lineItem:       [ { position: 50, importance: #MEDIUM, cssDefault: { width: '5rem' } } ] ,
+  @UI: { lineItem:       [ { position: 50, importance: #MEDIUM } ] ,
          identification: [ { position: 50 } ] }
   Country;
 
@@ -58,12 +58,12 @@ annotate view ZC_header_1078 with
 
   @EndUserText.label: 'Order status'
   @UI: { identification: [ { position: 80 } ], selectionField: [ { position: 50 } ] }
-  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZI_STATUSVH_1405',
-                                       element: 'Status'  } }]
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'zi_status_vh_1078',
+                                       element: 'Id'  } }]
   OrderStatus;
 
   @EndUserText.label: 'Image URL'
   @UI: { lineItem:       [ { position: 90, importance: #LOW } ],
          identification: [ { position: 90 } ] }
   ImageUrl;
-  }
+}

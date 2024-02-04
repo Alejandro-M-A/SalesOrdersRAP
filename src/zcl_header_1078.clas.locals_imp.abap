@@ -33,6 +33,9 @@ CLASS lhc_Header DEFINITION INHERITING FROM cl_abap_behavior_handler.
     METHODS validateEmail FOR VALIDATE ON SAVE
       IMPORTING keys FOR Header~validateEmail.
 
+    METHODS validateCreatedOn FOR VALIDATE ON SAVE
+      IMPORTING keys FOR Header~validateCreatedOn.
+
     METHODS is_create_granted
       RETURNING VALUE(create_granted) TYPE abap_bool.
 
@@ -78,6 +81,13 @@ CLASS lhc_Header IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD precheck_update.
+    precheck_auth(
+       EXPORTING
+         it_entities_update = entities
+       CHANGING
+         ct_failed          = failed-header
+         ct_reported        = reported-header
+     ).
   ENDMETHOD.
 
   METHOD precheck_auth.
@@ -133,23 +143,60 @@ CLASS lhc_Header IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD validateEmail.
-     READ ENTITIES OF zr_header_1078 IN LOCAL MODE
-         ENTITY Header
-         FIELDS ( Email )
-         WITH CORRESPONDING #( keys )
-    RESULT DATA(lt_headers).
+    READ ENTITIES OF zr_header_1078 IN LOCAL MODE
+        ENTITY Header
+        FIELDS ( email )
+        WITH CORRESPONDING #( keys )
+   RESULT DATA(lt_headers).
 
     LOOP AT lt_headers INTO DATA(ls_header).
-        IF ls_header-email IS INITIAL.
-          APPEND VALUE #( %key = ls_header-%key ) TO failed-header.
-          APPEND VALUE #( %key = ls_header-%key
-                %msg = new_message_with_text(
-                            severity = if_abap_behv_message=>severity-error
-                            text = 'The field email is mandatory'
-                        )
-                %element-Email = if_abap_behv=>mk-on ) TO reported-header.
-        ENDIF.
+      IF ls_header-email IS INITIAL.
+        APPEND VALUE #( %key = ls_header-%key ) TO failed-header.
+        APPEND VALUE #( %key = ls_header-%key
+              %msg = new_message_with_text(
+                          severity = if_abap_behv_message=>severity-error
+                          text = 'The field email is mandatory'
+                      )
+              %element-Email = if_abap_behv=>mk-on ) TO reported-header.
+
+      ELSEIF NOT ls_header-email CS '@'.
+        APPEND VALUE #( %key = ls_header-%key ) TO failed-header.
+        APPEND VALUE #( %key = ls_header-%key
+              %msg = new_message_with_text(
+                          severity = if_abap_behv_message=>severity-error
+                          text = 'Invalid emial format'
+                      )
+              %element-Email = if_abap_behv=>mk-on ) TO reported-header.
+
+      ENDIF.
     ENDLOOP.
+  ENDMETHOD.
+
+  METHOD validateCreatedOn.
+
+
+
+    READ ENTITIES OF zr_header_1078 IN LOCAL MODE
+      ENTITY Header
+      FIELDS ( created_on delivery_date )
+      WITH CORRESPONDING #( keys )
+ RESULT DATA(lt_headers).
+
+    LOOP AT lt_headers INTO DATA(ls_header).
+      IF ls_header-created_on IS NOT INITIAL AND
+         ls_header-delivery_date IS NOT INITIAL AND
+         ls_header-created_on GT ls_header-delivery_date.
+        APPEND VALUE #( %key = ls_header-%key ) TO failed-header.
+        APPEND VALUE #( %key = ls_header-%key
+              %msg = new_message_with_text(
+                          severity = if_abap_behv_message=>severity-error
+                          text = 'The delivery date must be equal to or greater than the creation date'
+                      )
+              %element-Email = if_abap_behv=>mk-on ) TO reported-header.
+      ENDIF.
+
+    ENDLOOP.
+
   ENDMETHOD.
 
   METHOD is_create_granted.
